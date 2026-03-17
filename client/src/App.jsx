@@ -1,24 +1,25 @@
-import React from 'react'
-import Navbar from './components/navbar'
-import { Route,Routes, useLocation } from 'react-router-dom'
-import Home from './pages/Home'
-import {Toaster} from "react-hot-toast"
-import Footer from './components/Footer'
-import { useAppContext } from './context/AppContext'
-import Login from './components/Login'
-import AllProducts from './pages/AllProducts'
-import ProductCard from './components/ProductCard'
-import ProductCategory from './pages/ProductCategory'
-import ProductDetails from './pages/ProductDetails'
-import Cart from './pages/Cart'
-import AddAdress from './pages/AddAdress'
-import MyOrders from './pages/MyOrders'
+import React from "react";
+import Navbar from "./components/navbar";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Home from "./pages/Home";
+import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer";
+import { useAppContext } from "./context/AppContext";
+import Login from "./components/Login";
+import AllProducts from "./pages/AllProducts";
+import ProductCard from "./components/ProductCard";
+import ProductCategory from "./pages/ProductCategory";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import AddAdress from "./pages/AddAdress";
+import MyOrders from "./pages/MyOrders";
+import SellerLogin from "./components/seller/SellerLogin";
+import SellerLayout from "./pages/seller/SellerLayout";
 
 function App() {
-
   const isSellerPath = useLocation().pathname.includes("selleer");
-  const {showUserLogin} = useAppContext ()
-  
+  const { showUserLogin, isSeller } = useAppContext();
+
   return (
     <div className="min-h-screen bg-green-300 text-gray-900">
       {isSellerPath ? null : <Navbar />}
@@ -35,6 +36,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/add-address" element={<AddAdress />} />
           <Route path="/my-orders" element={<MyOrders />} />
+          <Route
+            path="/selleer"
+            element={isSeller ? <SellerLayout/> : <SellerLogin />}
+          ></Route>
         </Routes>
       </div>
       {!isSellerPath && <Footer />}{" "}
@@ -42,4 +47,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

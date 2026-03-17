@@ -64,10 +64,10 @@ const ProductCard = ({ product }) => {
           <div className="mt-auto flex items-end justify-between">
             <div className="flex flex-col">
               <span className="text-[#6D8A74] text-[10px] line-through font-semibold mb-0.5">
-                {currency} ${product.price}
+                {currency} {product.price}
               </span>
               <span className="text-[#1C462A] text-xl font-black leading-none">
-                {currency} ${product.offerPrice}
+                {currency} {product.offerPrice}
               </span>
             </div>
 

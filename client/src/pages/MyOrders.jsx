@@ -27,7 +27,7 @@ function MyOrders() {
           className=" border border-blue-600   rounded-lg
               mb-10
               p-4 py-5
-              max-w-4xl"
+              max-w-4xl bg-amber-300"
         >
           <p
             className=" flex
@@ -46,9 +46,14 @@ function MyOrders() {
           </p>
 
           {order.items.map((item, index) => (
-            <div key={index} className={`relative bg-white text-gray-500/70 ${
-              order.items.length !== index + 1 && "border-b"
-            }`}>
+            <div
+              key={index}
+              className={`relative border-y-indigo-500 text-gray-500/70 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 ${
+                order.items.length !== index + 1
+                  ? "border-b border-gray-200"
+                  : ""
+              }`}
+            >
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="bg-primary/10 p-4 rounded-lg">
                   <img
@@ -65,13 +70,14 @@ function MyOrders() {
                 </div>
               </div>
 
-              <div className="text-primary text-lg font-medium">
+              <div className="text-primary text-lg font-medium flex flex-col justify-center md:ml-8 mb:mb-0">
                 <p>Quantity:{item.quantity || "1"} </p>
                 <p>Status:{order.status} </p>
                 <p>Date:{new Date(order.createdAt).toLocaleDateString} </p>
               </div>
               <p className="text-primary text-lg font-medium">
-                Amount:{currency}{item.product.offerPrice * item.quantity}
+                Amount:{currency}
+                {item.product.offerPrice * item.quantity}
               </p>
             </div>
           ))}
