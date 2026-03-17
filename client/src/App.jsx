@@ -38,7 +38,7 @@ function App() {
           <Route path="/my-orders" element={<MyOrders />} />
           <Route
             path="/selleer"
-            element={isSeller ? <SellerLayout/> : <SellerLogin />}
+            element={isSeller ? <SellerLayout /> : <SellerLogin />}
           ></Route>
         </Routes>
       </div>

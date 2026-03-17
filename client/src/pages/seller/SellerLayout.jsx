@@ -7,7 +7,11 @@ const SellerLayout = () => {
   const { setIsSeller } = useAppContext();
 
   const sidebarLinks = [
-    { name: "Add Product", path: "/selleer/add-product", icon: assets.add_icon },
+    {
+      name: "Add Product",
+      path: "/selleer/add-product",
+      icon: assets.add_icon,
+    },
     {
       name: "Product List",
       path: "/selleer/product-list",
