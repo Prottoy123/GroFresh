@@ -1,21 +1,26 @@
-import express from 'express';
-import { sellerLogin, sellerlogout } from '../controllers/seller.controller';
-import { authSeller } from '../middleware/authSeller';
-import { upload } from '../middleware/multer';
-import { changeStock, createProduct, productList } from '../controllers/product.controller.js';
-
+import express from "express";
+import { authSeller } from "../middleware/authSeller.js";
+import { upload } from "../middleware/multer.js";
+import {
+  changeStock,
+  createProduct,
+  productList,
+  productById, 
+} from "../controllers/product.controller.js";
 
 const ProductRouter = express.Router();
 
+// 1. Add Product (POST)
 ProductRouter.route("/add").post(
-    upload.fields([
-        {name:"image",maxCount:2}
-    ]),authSeller,createProduct
-)
+  authSeller,
+  upload.fields([
+    { name: "image", maxCount: 1 },
+  ]),
+  createProduct,
+);
+
 ProductRouter.route("/list").get(productList);
-ProductRouter.route("/product-by-id").get(productList);
-ProductRouter.route("/stock").post(authSeller,changeStock);
-
-
+ProductRouter.route("/:id").get(productById);
+ProductRouter.route("/stock/:id").patch(authSeller, changeStock);
 
 export default ProductRouter;
