@@ -2,7 +2,8 @@ import { asyncHandler } from "../utils/asyncHandler.js"; // ইম্পোর�
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import Product from "../models/Product.models.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js"; // তোমার পাথ অনুযায়ী ঠিক করে নিও
+import {uploadOnCloudinary} from "../configs/cloudinary.js"
+
 
 // 1. Add Product
 export const createProduct = asyncHandler(async (req, res) => {
