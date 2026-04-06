@@ -2,8 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"; // ইম্পোর�
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import Product from "../models/Product.models.js";
-import {uploadOnCloudinary} from "../configs/cloudinary.js"
-
+import { uploadOnCloudinary } from "../configs/cloudinary.js";
 
 // 1. Add Product
 export const createProduct = asyncHandler(async (req, res) => {
@@ -14,7 +13,7 @@ export const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid productData format. Must be valid JSON.");
   }
 
-  const imagesPath = req.files?.productImage?.[0]?.path;
+  const imagesPath = req.files?.image?.[0]?.path;
   if (!imagesPath) {
     throw new ApiError(400, "Product image file is required");
   }
