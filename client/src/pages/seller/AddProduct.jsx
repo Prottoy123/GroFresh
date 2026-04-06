@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { assets, categories } from "../../assets/assets";
+import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
   const [files, setFiles] = useState([]);
@@ -8,10 +10,55 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { axios } = useAppContext();
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    // API Call logic will go here
+
+    if (loading) return;
+
+    try {
+      setLoading(true); 
+
+      const productData = {
+        name,
+        description: description.split("\n"),
+        category,
+        price,
+        offerPrice,
+      };
+
+      const formData = new FormData();
+      formData.append("productData", JSON.stringify(productData));
+
+      for (let i = 0; i < files.length; i++) {
+        if (files[i]) {
+          formData.append("image", files[i]);
+        }
+      }
+      const { data } = await axios.post("/api/v1/products/add", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        setName("");
+        setDescription("");
+        setCategory("");
+        setPrice("");
+        setOfferPrice("");
+        setFiles([]);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -185,13 +232,17 @@ const AddProduct = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="pt-6 mt-4">
           <button
             type="submit"
-            className="w-full py-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white font-black text-lg rounded-xl shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
+            disabled={loading} 
+            className={`w-full py-4 text-white font-black text-lg rounded-xl transition-all duration-300 uppercase tracking-widest ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed opacity-70"
+                : "bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1"
+            }`}
           >
-            Launch Product
+            {loading ? "LAUNCHING..." : "Launch Product"}
           </button>
         </div>
       </form>

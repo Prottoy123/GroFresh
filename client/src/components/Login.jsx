@@ -1,21 +1,35 @@
 import React from "react";
 import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 function Login() {
-  const { setShowUserLogin, setuser } = useAppContext();
+  const { setShowUserLogin, setuser, axios, navigate } = useAppContext();
   const [state, setState] = React.useState("login");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    setuser({
-      email: "test@gmail.com",
-      name: "test",
-    });
-    setShowUserLogin(false);
-  };
+ const onSubmitHandler = async (event) => {
+   event.preventDefault(); // try ব্লকের বাইরে রাখা বেটার
+
+   try {
+     const { data } = await axios.post(`/api/v1/users/${state}`, {
+       name,
+       email,
+       password,
+     });
+
+     if (data.success) {
+       navigate("/");
+       setuser(data.data); 
+       setShowUserLogin(false);
+     } else {
+       toast.error(data.message);
+     }
+   } catch (error) {
+     toast.error(error.response?.data?.message || "Authentication failed");
+   }
+ };
 
   return (
     <div

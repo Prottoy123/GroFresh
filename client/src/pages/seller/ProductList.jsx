@@ -1,8 +1,23 @@
 import React from "react";
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 function ProductList() {
-  const { products, currency } = useAppContext();
+  const { products, currency, axios, fetchProducts } = useAppContext();
+
+  const toggleStock = async (id, inStock) => {
+    try {
+      const { data } = await axios.patch(`/api/v1/products/stock/${id}`, {
+        inStock,
+      });
+      if (data.success) {
+        fetchProducts();
+        toast.success(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     // Main container with consistent gradient background
@@ -94,9 +109,13 @@ function ProductList() {
                     <td className="px-6 py-5 whitespace-nowrap text-center">
                       <label className="relative inline-flex items-center cursor-pointer group">
                         <input
+                          onChange={() => {
+                            toggleStock(product._id, !product.inStock);
+                          }}
+                          checked={product.inStock}
                           type="checkbox"
                           className="sr-only peer"
-                          defaultChecked
+                    
                         />
                         <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-green-400 peer-checked:to-teal-500 shadow-inner"></div>
                         <span className="ml-3 text-sm font-bold text-gray-600 group-hover:text-gray-800">
