@@ -41,6 +41,24 @@ export const sellerLogin = asyncHandler(async (req, res) => {
     );
 });
 
+//seller-auth
+export const isSellerAuth = asyncHandler(async (req, res) => {
+  const seller = req.seller;
+
+  if (!seller) {
+    throw new ApiError(401, "Seller context is missing");
+  }
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        { email: seller.email, role: seller.role },
+        "Seller is authenticated and session is valid",
+      ),
+    );
+});
+
 // Seller Logout
 export const sellerLogout = asyncHandler(async (req, res) => {
   const options = {
