@@ -36,18 +36,17 @@ export const AppContextProvider = ({ children }) => {
 
   //fetch user Auth Status, user data and cart items
 
- const fetchUser = async () => {
-   try {
-     const { data } = await axios.get("/api/v1/users/is-auth");
-     if (data.success) {
-       setuser(data.data);
-       setCartItems(data.data.cartItems || []); 
-     }
-   } catch (error) {
-     setuser(null);
-   }
- };
-
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/users/is-auth");
+      if (data.success) {
+        setuser(data.data);
+        setCartItems(data.data.cartItems || []);
+      }
+    } catch (error) {
+      setuser(null);
+    }
+  };
 
   //fetch All Products
   const fetchProducts = async () => {
@@ -124,8 +123,31 @@ export const AppContextProvider = ({ children }) => {
     fetchSeller();
     fetchProducts();
     fetchUser();
-    
   }, []);
+
+  //update database cart Items
+  useEffect(() => {
+    const updateCart = async () => {
+      try {
+        const { data } = await axios.patch("/api/v1/carts/", {
+          cartItems,
+        });
+
+        if (data.success) {
+          console.log("Cart synced with database successfully");
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(
+          error.response?.data?.message || "Failed to update cart in database",
+        );
+      }
+    };
+    if (user) {
+      updateCart();
+    }
+  }, [cartItems]); 
 
   const value = {
     navigate,
