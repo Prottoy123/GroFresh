@@ -3,9 +3,8 @@ import { authUser } from "../middleware/authUser.js";
 import { addAddress, getAddress } from "../controllers/address.controller.js";
 
 const addressRouter = express.Router();
-addressRouter
-  .route("/")
-  .post(authUser, addAddress)
-  .get(authUser, getAddress); 
+
+addressRouter.post("/add", authUser, addAddress);
+addressRouter.get("/list", authUser, getAddress);
 
 export default addressRouter;
