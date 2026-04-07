@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const GroceryNavbar = () => {
   const [open, setOpen] = useState(false);
@@ -14,23 +15,30 @@ const GroceryNavbar = () => {
     setsearchQuery,
     searchQuery,
     getCartAmount,
-    getCartCount
+    getCartCount,
+    axios,
   } = useAppContext();
 
   const logout = async () => {
-    setuser(null);
-    navigate("/");
+    try {
+      const { data } = await axios.get("/api/v1/users/logout");
+      if (data) {
+        toast.success(data.message);
+        setuser(null);
+        navigate("/");
+      } else {
+        toast.success(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
     if (searchQuery.length > 0) {
-      navigate("/products")
-      
+      navigate("/products");
     }
-    
-    
-  }, [searchQuery])
-  
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);

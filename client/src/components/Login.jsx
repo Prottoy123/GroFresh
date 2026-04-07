@@ -10,7 +10,7 @@ function Login() {
   const [password, setPassword] = React.useState("");
 
  const onSubmitHandler = async (event) => {
-   event.preventDefault(); // try ব্লকের বাইরে রাখা বেটার
+   event.preventDefault(); 
 
    try {
      const { data } = await axios.post(`/api/v1/users/${state}`, {
