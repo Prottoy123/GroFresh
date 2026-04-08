@@ -4,15 +4,24 @@ import { dummyAddress, dummyOrders } from "../assets/assets";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
-  const { currency } = useAppContext();
+  const { currency, axios, user } = useAppContext();
 
   const fetchMyorders = async () => {
-    setMyOrders(dummyOrders);
+    try {
+      const { data } = await axios.get("/api/v1/order/user");
+      if (data.success) {
+        setMyOrders(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    fetchMyorders();
-  }, []);
+    if (user) {
+      fetchMyorders();
+    }
+  }, [user]);
 
   return (
     <div className="mt-16 pb-16">
@@ -73,7 +82,7 @@ function MyOrders() {
               <div className="text-primary text-lg font-medium flex flex-col justify-center md:ml-8 mb:mb-0">
                 <p>Quantity:{item.quantity || "1"} </p>
                 <p>Status:{order.status} </p>
-                <p>Date:{new Date(order.createdAt).toLocaleDateString} </p>
+                <p>Date:{new Date(order.createdAt).toLocaleDateString()} </p>
               </div>
               <p className="text-primary text-lg font-medium">
                 Amount:{currency}

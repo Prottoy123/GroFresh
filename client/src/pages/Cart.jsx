@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 import { assets, dummyAddress } from "../assets/assets";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const {
@@ -12,12 +13,15 @@ const Cart = () => {
     updateCartItem,
     navigate,
     getCartAmount,
+    axios,
+    user,
+    setCartItems,
   } = useAppContext();
 
   const [cartArray, setCartArray] = useState([]);
-  const [adresses, setAdresses] = useState(dummyAddress);
+  const [adresses, setAdresses] = useState([]);
   const [showAddress, setShowAddress] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState(dummyAddress[0]);
+  const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentOption, SetPaymentOption] = useState("COD");
 
   const getCart = () => {
@@ -30,13 +34,83 @@ const Cart = () => {
     setCartArray(tempArray);
   };
 
+  const getUserAdress = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/addresses/list");
+      if (data.success) {
+        setAdresses(data.data);
+        if (data.data && data.data.length > 0) {
+          setSelectedAddress(data.data[0]);
+        }
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to fetch addresses");
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      getUserAdress();
+    }
+  }, [user]);
+
   useEffect(() => {
     if (products.length > 0 && cartItems) {
       getCart();
     }
   }, [products, cartItems]);
 
-  const placeOrder = async () => {};
+  const placeOrder = async () => {
+    try {
+      if (!selectedAddress) {
+        return toast.error("Please Select an adress");
+      }
+
+      //place order with cod
+      if (paymentOption === "COD") {
+        const { data } = await axios.post("/api/v1/order/cod", {
+          userId: user._id,
+          items: cartArray.map((item) => ({
+            product: item._id,
+            quantity: item.quantity,
+          })),
+          address: selectedAddress._id,
+        });
+
+        if (data.success) {
+          toast.success(data.message);
+          setCartItems({});
+          navigate("/my-orders");
+        } else {
+          toast.error(data.message);
+        }
+      }
+      else{
+        //place order with stripe 
+        const { data } = await axios.post("/api/v1/order/stripe", {
+          userId: user._id,
+          items: cartArray.map((item) => ({
+            product: item._id,
+            quantity: item.quantity,
+          })),
+          address: selectedAddress._id,
+        });
+
+        if (data.success && data.data.session_url) {
+          window.location.replace(data.data.session_url); // ইউজারকে Stripe এর পেমেন্ট পেজে পাঠিয়ে দেবে
+        
+        } else {
+          toast.error(data.message);
+        }
+
+
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return products.length > 0 && cartItems ? (
     <div className="flex flex-col md:flex-row mt-16">
@@ -155,15 +229,16 @@ const Cart = () => {
             </button>
             {showAddress && (
               <div className="absolute top-12 py-1 bg-white border border-gray-300 text-sm w-full">
-                {adresses.map((adress, index) => (
+                {adresses?.map((adress, index) => (
                   <p
+                    key={index}
                     onClick={() => {
-                      selectedAddress(adress);
+                      setSelectedAddress(adress);
                       setShowAddress(false);
                     }}
-                    className="text-gray-500 p-2 hover:bg-gray-100"
+                    className="text-gray-500 p-2 hover:bg-gray-100 cursor-pointer transition-colors"
                   >
-                    {adress.street},{adress.city},{adress.state},
+                    {adress.street}, {adress.city}, {adress.state},{" "}
                     {adress.country}
                   </p>
                 ))}
