@@ -10,12 +10,14 @@ import cartRouter from "./routes/cart.Route.js";
 import ProductRouter from "./routes/product.Route.js"; 
 import orderRouter from "./routes/order.Route.js";
 import addressRouter from "./routes/adress.Route.js";
+import { stripeWebHooks } from "./controllers/order.controller.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 const allowedOrigins = ["http://localhost:5173"];
 
+app.post('/stripe',express.raw({type:'application/json'}),stripeWebHooks)
 // 2. Middleware Configuration (Industry Standard)
 app.use(
   cors({

@@ -3,6 +3,7 @@ import Product from "../models/Product.models.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import User from "../models/user.models.js";
 import stripe from "stripe"
 
 // Place order with Stripe paymeSnt
@@ -85,7 +86,6 @@ export const placeOrderStripe = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Failed to initialize Stripe session");
   }
 
-  // ফিক্স ৩: ফ্রন্টএন্ডে রিডাইরেক্ট করার জন্য session_url পাঠানো হলো
   return res
     .status(201)
     .json(
@@ -95,6 +95,58 @@ export const placeOrderStripe = asyncHandler(async (req, res) => {
         "Session created, redirecting to Stripe",
       ),
     );
+});
+
+//stripe webhooks to verify payment action : /stripe
+
+export const stripeWebHooks = asyncHandler(async (req, res) => {
+  const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+
+  const sig = req.headers["stripe-signature"]; // request এর বদলে req
+  let event;
+
+  try {
+    event = stripeInstance.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET,
+    );
+  } catch (error) {
+    return res.status(400).send(`Webhook Error: ${error.message}`);
+  }
+
+  // Handle the event
+  switch (event.type) {
+    case "checkout.session.completed": {
+      const session = event.data.object;
+      const { orderId, userId } = session.metadata;
+
+      // Mark payment as paid
+      await Order.findByIdAndUpdate(orderId, {
+        isPaid: true, 
+        status: "Order Placed", 
+      });
+
+      // Clear the user cart
+      await User.findByIdAndUpdate(userId, { cartItems: {} });
+      break;
+    }
+
+    case "checkout.session.expired":
+    case "checkout.session.async_payment_failed": {
+      const session = event.data.object;
+      const { orderId } = session.metadata;
+
+      await Order.findByIdAndDelete(orderId);
+      break;
+    }
+
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+      break;
+  }
+
+  return res.status(200).json({ received: true });
 });
 
 
