@@ -1,7 +1,7 @@
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
-import User from "../models/user.models.js"; // 🚨 ইউজার মডেল ইম্পোর্ট করতে হবে
+import User from "../models/User.models.js"; 
 
 export const authUser = asyncHandler(async (req, res, next) => {
   try {
