@@ -44,14 +44,16 @@ app.use("/api/v1/addresses", addressRouter);
 app.use("/api/v1/order", orderRouter);
 
 connectDB()
-  .then(() => {
-    app.listen(port, () => {
-      console.log(
-        `🚀 Server is running flawlessly on http://localhost:${port}`,
-      );
-    });
-  })
+  .then(() => console.log("MongoDB Connected for Serverless Execution"))
   .catch((err) => {
     console.error("MongoDB connection failed !!!", err);
     process.exit(1);
   });
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => {
+    console.log(`🚀 Server is running flawlessly on http://localhost:${port}`);
+  });
+}
+
+export default app;
