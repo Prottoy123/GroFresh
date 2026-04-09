@@ -18,7 +18,7 @@ export const updateCart = asyncHandler(async (req, res) => {
       $set: { cartItems },
     },
     {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     },
   );
