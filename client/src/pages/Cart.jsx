@@ -143,7 +143,7 @@ const Cart = () => {
               >
                 <img
                   className="max-w-full h-full object-cover"
-                  src={product.image[0]}
+                  src={product.image[0]?.replace("http://", "https://")}
                   alt={product.name}
                 />
               </div>

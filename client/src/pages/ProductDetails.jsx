@@ -44,10 +44,15 @@ const ProductDetails = () => {
               {product.image.map((image, index) => (
                 <div
                   key={index}
-                  onClick={() => setThumbnail(image)}
+                  onClick={() =>
+                    setThumbnail(image?.replace("http://", "https://"))
+                  }
                   className="border max-w-24 border-gray-500/30 rounded overflow-hidden cursor-pointer"
                 >
-                  <img src={image} alt={`Thumbnail ${index + 1}`} />
+                  <img
+                    src={image?.replace("http://", "https://")}
+                    alt={`Thumbnail ${index + 1}`}
+                  />
                 </div>
               ))}
             </div>
@@ -129,7 +134,13 @@ const ProductDetails = () => {
                 <ProductCard key={index} product={product} />
               ))}
           </div>
-          <button onClick={()=>{navigate('/products');scrollTo(0,0)}} className="mx-auto cursor-pointer px-12 my-16 py-2.5 border rounded text-[#24a47c] hover:bg-gray-200 transition">
+          <button
+            onClick={() => {
+              navigate("/products");
+              scrollTo(0, 0);
+            }}
+            className="mx-auto cursor-pointer px-12 my-16 py-2.5 border rounded text-[#24a47c] hover:bg-gray-200 transition"
+          >
             See more
           </button>
         </div>

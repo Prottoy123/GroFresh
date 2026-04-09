@@ -66,7 +66,10 @@ function ProductList() {
                       <div className="flex items-center gap-5">
                         <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 p-1 flex-shrink-0 shadow-sm overflow-hidden group">
                           <img
-                            src={product.image[0]}
+                            src={product.image[0]?.replace(
+                              "http://",
+                              "https://",
+                            )}
                             alt={product.name}
                             className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
                           />
@@ -115,7 +118,6 @@ function ProductList() {
                           checked={product.inStock}
                           type="checkbox"
                           className="sr-only peer"
-                    
                         />
                         <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-green-400 peer-checked:to-teal-500 shadow-inner"></div>
                         <span className="ml-3 text-sm font-bold text-gray-600 group-hover:text-gray-800">
