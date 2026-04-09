@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { dummyAddress, dummyOrders } from "../assets/assets";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
@@ -33,32 +32,21 @@ function MyOrders() {
       {myOrders.map((order, index) => (
         <div
           key={index}
-          className=" border border-blue-600   rounded-lg
-              mb-10
-              p-4 py-5
-              max-w-4xl bg-amber-300"
+          className=" border border-blue-600 rounded-lg mb-10 p-4 py-5 max-w-4xl bg-amber-300"
         >
-          <p
-            className=" flex
-                justify-between
-                md:items-center
-                text-gray-500
-                md:font-medium 
-                max-md:flex-col"
-          >
-            <span>orderId:{order._id}</span>
-            <span>Payment:{order.paymentType}</span>
+          <p className=" flex justify-between md:items-center text-gray-500 md:font-medium max-md:flex-col">
+            <span>orderId: {order._id}</span>
+            <span>Payment: {order.paymentType}</span>
             <span>
-              Total Amount:{currency}
-              {order.amount}
+              Total Amount: {currency} {order.amount}
             </span>
           </p>
 
-          {order.items.map((item, index) => (
+          {order.items.map((item, itemIndex) => (
             <div
-              key={index}
+              key={itemIndex}
               className={`relative border-y-indigo-500 text-gray-500/70 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 ${
-                order.items.length !== index + 1
+                order.items.length !== itemIndex + 1
                   ? "border-b border-gray-200"
                   : ""
               }`}
@@ -66,27 +54,29 @@ function MyOrders() {
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="bg-primary/10 p-4 rounded-lg">
                   <img
-                    src={product.image[0]?.replace("http://", "https://")}
-                    alt={product.name}
-                    className="w-16 h-16"
+                    // ম্যাজিক ফিক্স ১: item.product ব্যবহার এবং http -> https কনভার্সন
+                    src={item.product?.image[0]?.replace("http://", "https://")}
+                    alt={item.product?.name || "Product Image"}
+                    className="w-16 h-16 object-cover"
                   />
                 </div>
                 <div className="ml-4">
                   <h2 className="text-xl font-medium text-gray-800">
-                    {item.product.name}
+                    {item.product?.name || "Product Unavailable"}
                   </h2>
-                  <p>Category:{item.product.category} </p>
+                  <p>Category: {item.product?.category || "N/A"} </p>
                 </div>
               </div>
 
               <div className="text-primary text-lg font-medium flex flex-col justify-center md:ml-8 mb:mb-0">
-                <p>Quantity:{item.quantity || "1"} </p>
-                <p>Status:{order.status} </p>
-                <p>Date:{new Date(order.createdAt).toLocaleDateString()} </p>
+                <p>Quantity: {item.quantity || "1"} </p>
+                <p>Status: {order.status} </p>
+                {/* ম্যাজিক ফিক্স ২: Date ফাংশন কল করা হলো () দিয়ে */}
+                <p>Date: {new Date(order.createdAt).toLocaleDateString()} </p>
               </div>
               <p className="text-primary text-lg font-medium">
-                Amount:{currency}
-                {item.product.offerPrice * item.quantity}
+                Amount: {currency}
+                {(item.product?.offerPrice || 0) * item.quantity}
               </p>
             </div>
           ))}
