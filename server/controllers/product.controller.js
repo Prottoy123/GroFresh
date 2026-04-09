@@ -13,18 +13,21 @@ export const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid productData format. Must be valid JSON.");
   }
 
-  const imagesPath = req.files?.image?.[0]?.path;
-  if (!imagesPath) {
+  const imageBuffer = req.files?.image?.[0]?.buffer;
+  if (!imageBuffer) {
     throw new ApiError(400, "Product image file is required");
   }
 
-  const image = await uploadOnCloudinary(imagesPath);
+  const image = await uploadOnCloudinary(imageBuffer);
 
   if (!image) {
     throw new ApiError(500, "Error uploading image to Cloudinary");
   }
 
-  const newProduct = await Product.create({ ...productData, image: image.url });
+  const newProduct = await Product.create({
+    ...productData,
+    image: image.secure_url,
+  });
 
   return res
     .status(201)

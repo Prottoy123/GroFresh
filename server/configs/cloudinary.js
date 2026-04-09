@@ -1,6 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 import dotenv from "dotenv";
+import { Readable } from "stream";
 
 dotenv.config({
   path: "./.env",
@@ -12,32 +13,31 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploadOnCloudinary = async (localFilePath) => {
-  try {
-    if (!localFilePath) return null;
-    //upload the file
-    const response = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: "auto",
-    });
-    // console.log("file is uploaded on cloudinary", response.result);
-    return response;
-  } catch (error) {
-    fs.unlinkSync(localFilePath); //remove the locally saved file as the operation failed
-    return null;
-  }
-};
 
-const deleteFromCloudinary = async (publicId) => {
-  try {
-    const response = await cloudinary.uploader.destroy(publicId, {
-      resource_type: "image",
-    });
-    console.log("file is deleted from cloudinary", response.result);
-    return response;
-  } catch (error) {
-    throw new ApiError(500, "Error while deleting the file from cloudinary");
-    return null;
-  }
-};
+// তোমার cloudinary.config(...) এখানে যেমন ছিল তেমনই থাকবে
 
-export { uploadOnCloudinary, deleteFromCloudinary };
+export const uploadOnCloudinary = async (buffer) => {
+  return new Promise((resolve, reject) => {
+    if (!buffer) return reject(new Error("No buffer provided"));
+
+    // Cloudinary এর ডাইরেক্ট স্ট্রিম ইঞ্জিন
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: "grofresh",
+        resource_type: "auto",
+        secure: true, // আগের সেশনের Mixed Content ওয়ার্নিং ঠেকানোর জন্য
+      },
+      (error, result) => {
+        if (error) {
+          console.error("Cloudinary upload failed:", error);
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      },
+    );
+
+    // Node.js এর নেটিভ স্ট্রিম দিয়ে বাফারকে Cloudinary-তে পাঠানো হচ্ছে
+    Readable.from(buffer).pipe(uploadStream);
+  });
+};
