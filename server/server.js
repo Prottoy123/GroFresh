@@ -15,7 +15,10 @@ import { stripeWebHooks } from "./controllers/order.controller.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://gro-fresh-silk.vercel.app",
+];
 
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebHooks)
 // 2. Middleware Configuration (Industry Standard)
