@@ -5,16 +5,6 @@
 
 **GroFresh** is an enterprise-grade, full-stack grocery e-commerce platform built using the **MERN** (MongoDB, Express.js, React, Node.js) stack. It features a seamless shopping experience, robust admin controls, secure payment processing via Stripe, and a responsive, modern UI powered by Tailwind CSS.
 
-<img width="1900" height="1079" alt="Image" src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" />
-<img width="1897" height="1063" alt="Image" src="https://github.com/user-attachments/assets/68107b82-ab75-4cf8-866e-bbd5da890a23" />
-<img width="1918" height="1079" alt="Image" src="https://github.com/user-attachments/assets/3a2af72a-fdc2-450a-a029-3003fbfeb7af" />
-<img width="1893" height="1079" alt="Image" src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" />
-<img width="1892" height="1071" alt="Image" src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" />
-<img width="1919" height="964" alt="Image" src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" />
-<img width="1919" height="1079" alt="Image" src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" />
-<img width="1904" height="1076" alt="Image" src="https://github.com/user-attachments/assets/6ccf947e-0c70-4508-8396-a08177c60a5d" />
-<img width="1887" height="1079" alt="Image" src="https://github.com/user-attachments/assets/18227587-d91f-423f-b281-2b30af3a8036" />
-
 ### 🔗 Live Preview: [https://gro-fresh-silk.vercel.app/](https://gro-fresh-silk.vercel.app/)
 
 ---
@@ -146,6 +136,21 @@ Developed with precision and care by **MD Monjurul Islam**.
   * **Role:** Full-Stack Developer (MERN)
 
 -----
+
+## 📸 Application Gallery
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" alt="GroFresh Hero" width="100%">
+</p>
+
+### 🔍 Interfaces & Dashboards
+
+| User Experience | Seller / Admin Controls |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/68107b82-ab75-4cf8-866e-bbd5da890a23" alt="UI View 1" width="100%"> | <img src="https://github.com/user-attachments/assets/3a2af72a-fdc2-450a-a029-3003fbfeb7af" alt="UI View 2" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" alt="UI View 3" width="100%"> | <img src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" alt="UI View 4" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" alt="UI View 5" width="100%"> | <img src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" alt="UI View 6" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/6ccf947e-0c70-4508-8396-a08177c60a5d" alt="UI View 7" width="100%"> | <img src="https://github.com/user-attachments/assets/18227587-d91f-423f-b281-2b30af3a8036" alt="UI View 8" width="100%"> |
 
 *If you find this project useful, please consider giving it a ⭐\!*
 
