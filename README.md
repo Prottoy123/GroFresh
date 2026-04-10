@@ -1,7 +1,6 @@
 # 🛒 GroFresh (EcoMart) - Premium Grocery E-Commerce Platform
 
-![GroFresh Banner](https://via.placeholder.com/1200x400/1df28b/ffffff?text=GroFresh+-+Freshness+Delivered+To+Your+Doorstep)
-*(Note: Replace this banner link with an actual screenshot of your project)*
+
 
 **GroFresh** is an enterprise-grade, full-stack grocery e-commerce platform built using the **MERN** (MongoDB, Express.js, React, Node.js) stack. It features a seamless shopping experience, robust admin controls, secure payment processing via Stripe, and a responsive, modern UI powered by Tailwind CSS.
 
@@ -100,21 +99,5 @@ Run the development server:
 
 Bash
 npm run dev
+```)
 
-💡 Engineering Highlights (Problem Solving)
-During development, several complex architectural challenges were resolved:
-
-Serverless Connection Exhaustion: Mitigated MongoDB connection limits on Vercel by implementing connection state caching in db/index.js, preventing the creation of redundant DB connections per request.
-
-Webhook Event Syncing: Successfully architected Stripe Webhooks with express.raw() body parsing to verify signatures, resolving asynchronous order updates without dropping requests.
-
-Data Projection Optimization: Optimized Mongoose .populate() queries to selectively fetch references (e.g., dynamically fetching category names from product references), minimizing bandwidth and rendering "N/A" fallbacks obsolete.
-
-👨‍💻 Developer
-Developed with precision and care by MD Monjurul Islam.
-
-GitHub: @Prottoy123
-
-Role: Full-Stack Developer (MERN)
-
-If you find this project useful, please consider giving it a ⭐!
