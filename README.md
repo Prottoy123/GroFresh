@@ -1,4 +1,5 @@
-# 🛒 GroFresh (EcoMart) - Premium Grocery E-Commerce Platform
+
+# 🛒 GroFresh - Premium Grocery E-Commerce Platform
 
 
 
@@ -55,15 +56,20 @@ Follow these steps to set up the project locally on your machine.
 ```bash
 git clone [https://github.com/Prottoy123/GroFresh.git](https://github.com/Prottoy123/GroFresh.git)
 cd GroFresh
-2. Backend Setup
+````
+
+### 2\. Backend Setup
+
 Navigate to the backend directory and install dependencies:
 
-Bash
+```bash
 cd backend
 npm install
-Create a .env file in the backend root directory and configure the following variables:
+```
 
-Code snippet
+Create a `.env` file in the `backend` root directory and configure the following variables:
+
+```env
 PORT=4000
 NODE_ENV=development
 MONGODB_URI=your_mongodb_connection_string
@@ -81,23 +87,59 @@ STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 # Admin Credentials (For Seeding/Default Access)
 SELLER_EMAIL=admin@example.com
 SELLER_PASSWORD=your_secure_password
+```
+
 Run the backend server:
 
-Bash
+```bash
 npm run dev
-3. Frontend Setup
+```
+
+### 3\. Frontend Setup
+
 Open a new terminal, navigate to the frontend directory, and install dependencies:
 
-Bash
+```bash
 cd frontend
 npm install
-Create a .env file in the frontend directory:
+```
 
-Code snippet
+Create a `.env` file in the `frontend` directory:
+
+```env
 VITE_BACKEND_URL=http://localhost:4000
+```
+
 Run the development server:
 
-Bash
+```bash
 npm run dev
-```)
+```
+
+-----
+
+## 💡 Engineering Highlights (Problem Solving)
+
+During development, several complex architectural challenges were resolved:
+
+1.  **Serverless Connection Exhaustion:** Mitigated MongoDB connection limits on Vercel by implementing connection state caching in `db/index.js`, preventing the creation of redundant DB connections per request.
+2.  **Webhook Event Syncing:** Successfully architected Stripe Webhooks with `express.raw()` body parsing to verify signatures, resolving asynchronous order updates without dropping requests.
+3.  **Data Projection Optimization:** Optimized Mongoose `.populate()` queries to selectively fetch references (e.g., dynamically fetching category names from product references), minimizing bandwidth and rendering "N/A" fallbacks obsolete.
+
+-----
+
+## 👨‍💻 Developer
+
+Developed with precision and care by **MD Monjurul Islam**.
+
+  * **GitHub:** [@Prottoy123](https://www.google.com/search?q=https://github.com/Prottoy123)
+  * **Role:** Full-Stack Developer (MERN)
+
+-----
+
+*If you find this project useful, please consider giving it a ⭐\!*
+
+```
+
+***
 
