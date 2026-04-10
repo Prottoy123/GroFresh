@@ -103,7 +103,7 @@ const GroceryNavbar = () => {
               All Product
             </NavLink>
             <NavLink to="/" className="hover:text-emerald-600 transition">
-              Hot Deals
+              Reviews
             </NavLink>
           </div>
 
