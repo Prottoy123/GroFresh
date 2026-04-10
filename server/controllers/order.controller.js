@@ -195,7 +195,7 @@ export const getUserOrders = asyncHandler(async (req, res) => {
 
   // ⚠️ ম্যাজিক ফিক্স: Strict ফিল্টার তুলে দেওয়া হলো যাতে সব অর্ডার আসে
   const orders = await Order.find({ userId })
-    .populate("items.product", "name image price offerPrice")
+    .populate("items.product", "name image price offerPrice category")
     .populate("address")
     .sort({ createdAt: -1 });
 
@@ -213,7 +213,7 @@ export const getUserOrders = asyncHandler(async (req, res) => {
 // 3. Get All Orders (Admin/Seller Route)
 export const getAllOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({})
-    .populate("items.product", "name image price")
+    .populate("items.product", "name image price category")
     .populate("address")
     .sort({ createdAt: -1 });
 
