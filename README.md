@@ -139,9 +139,6 @@ Developed with precision and care by **MD Monjurul Islam**.
 
 ## 📸 Application Gallery
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" alt="GroFresh Hero" width="100%">
-</p>
 
 ### 🔍 Interfaces & Dashboards
 
@@ -151,7 +148,7 @@ Developed with precision and care by **MD Monjurul Islam**.
 | <img src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" alt="UI View 3" width="100%"> | <img src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" alt="UI View 4" width="100%"> |
 | <img src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" alt="UI View 5" width="100%"> | <img src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" alt="UI View 6" width="100%"> |
 | <img src="https://github.com/user-attachments/assets/6ccf947e-0c70-4508-8396-a08177c60a5d" alt="UI View 7" width="100%"> | <img src="https://github.com/user-attachments/assets/18227587-d91f-423f-b281-2b30af3a8036" alt="UI View 8" width="100%"> |
-
+|<img src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" alt="GroFresh Hero" width="100%">
 *If you find this project useful, please consider giving it a ⭐\!*
 
 ```
