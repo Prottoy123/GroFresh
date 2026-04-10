@@ -128,22 +128,51 @@ During development, several complex architectural challenges were resolved:
 
 -----
 
-## 👨‍💻 Developer
+## 📸 Application Preview (Visual Gallery)
 
-Developed with precision and care by **MD Monjurul Islam**.
+To provide a quick overview of the application's capabilities, here is a structured preview of both the Seller and Customer interfaces.
 
-  * **GitHub:** [@Prottoy123](https://www.google.com/search?q=https://github.com/Prottoy123)
-  * **Role:** Full-Stack Developer (MERN)
+<br/>
 
------
+### 🛠️ Seller / Admin Dashboard
+A comprehensive and robust panel for complete control over inventory, orders, and product management.
 
-## 📸 Application Gallery
+| Secure Authentication | Inventory Management |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/9a5ef104-a894-442f-938f-dd908f5365d8" alt="Seller Login" width="100%"> | <img src="https://github.com/user-attachments/assets/476cd834-da51-4d8e-ac09-207adfcff6ca" alt="Inventory Management" width="100%"> |
 
-| <img src="https://github.com/user-attachments/assets/68107b82-ab75-4cf8-866e-bbd5da890a23" alt="UI View 1" width="100%"> | <img src="https://github.com/user-attachments/assets/3a2af72a-fdc2-450a-a029-3003fbfeb7af" alt="UI View 2" width="100%"> |
-| <img src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" alt="UI View 3" width="100%"> | <img src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" alt="UI View 4" width="100%"> |
-| <img src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" alt="UI View 5" width="100%"> | <img src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" alt="UI View 6" width="100%"> |
-| <img src="https://github.com/user-attachments/assets/6ccf947e-0c70-4508-8396-a08177c60a5d" alt="UI View 7" width="100%"> | <img src="https://github.com/user-attachments/assets/18227587-d91f-423f-b281-2b30af3a8036" alt="UI View 8" width="100%"> |
-|<img src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" alt="GroFresh Hero" width="100%">
+| Add New Product | Real-time Orders Overview |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/8c0202f0-64f8-4a3c-8292-ba1929ff6480" alt="Add Product Form" width="100%"> | <img src="https://github.com/user-attachments/assets/4a8f8b40-a545-412f-bdda-13106e5fa737" alt="Orders Overview" width="100%"> |
+
+<br/>
+<hr/>
+<br/>
+
+### 🛍️ Customer Interface (End-User Experience)
+An intuitive, modern, and responsive interface designed to make the shopping journey fast, reliable, and delightful.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" alt="GroFresh Customer Home Page" width="100%">
+</p>
+
+| Explore Products | Product Details |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/68107b82-ab75-4cf8-866e-bbd5da890a23" alt="All Products Grid" width="100%"> | <img src="https://github.com/user-attachments/assets/3a2af72a-fdc2-450a-a029-3003fbfeb7af" alt="Product Details View" width="100%"> |
+
+| Engaging Banners | Interactive Cart |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" alt="Home Page Banner" width="100%"> | <img src="https://github.com/user-attachments/assets/959050ec-07ab-4a0a-9fee-d4058d40cf32" alt="Shopping Cart" width="100%"> |
+
+| Shipping Information | Stripe Secure Checkout |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/6ccf947e-0c70-4508-8396-a08177c60a5d" alt="Shipping Address Form" width="100%"> | <img src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" alt="Stripe Payment Gateway" width="100%"> |
+
+| Order Tracking | Filtered Views |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/18227587-d91f-423f-b281-2b30af3a8036" alt="User Order History" width="100%"> | <img src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" alt="Filtered Products" width="100%"> 
+
+
 *If you find this project useful, please consider giving it a ⭐\!*
 
 ```
