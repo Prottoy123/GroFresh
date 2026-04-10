@@ -139,11 +139,6 @@ Developed with precision and care by **MD Monjurul Islam**.
 
 ## 📸 Application Gallery
 
-
-### 🔍 Interfaces & Dashboards
-
-| User Experience | Seller / Admin Controls |
-| :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/68107b82-ab75-4cf8-866e-bbd5da890a23" alt="UI View 1" width="100%"> | <img src="https://github.com/user-attachments/assets/3a2af72a-fdc2-450a-a029-3003fbfeb7af" alt="UI View 2" width="100%"> |
 | <img src="https://github.com/user-attachments/assets/615df817-16a7-405e-aa7b-616cbf27018b" alt="UI View 3" width="100%"> | <img src="https://github.com/user-attachments/assets/66aee22d-b9e6-4a54-8cb9-ed70ec292e5d" alt="UI View 4" width="100%"> |
 | <img src="https://github.com/user-attachments/assets/c8c840bd-3c81-48e3-a079-1772c4bbef8a" alt="UI View 5" width="100%"> | <img src="https://github.com/user-attachments/assets/8f3578ee-c471-4a9a-b821-50001053b5ef" alt="UI View 6" width="100%"> |
