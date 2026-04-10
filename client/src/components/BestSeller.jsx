@@ -4,10 +4,18 @@ import { useAppContext } from "../context/AppContext";
 
 const BestSeller = () => {
   const { products } = useAppContext();
+
   return (
-    <div className="mt-16">
-      <p className="text-2xl md:text-3xl font-medium">Best Sellers</p>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-6 mt-4">
+    <div className="mt-16 mb-16">
+      <div className="flex flex-col items-start w-max mb-8">
+        <p className="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-tight">
+          Best Sellers
+        </p>
+        <div className="w-16 h-1.5 bg-green-500 rounded-full mt-2"></div>
+      </div>
+
+      {/* ম্যাজিক ফিক্স: Fluid Responsive Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mt-4">
         {products
           .filter((product) => product.inStock)
           .slice(0, 5)

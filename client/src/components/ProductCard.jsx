@@ -2,9 +2,9 @@ import React from "react";
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
 
-
 const ProductCard = ({ product }) => {
-  const { currency, addToCart, removeFromCart, cartItems,navigate } = useAppContext();
+  const { currency, addToCart, removeFromCart, cartItems, navigate } =
+    useAppContext();
 
   return (
     product && (
@@ -15,10 +15,10 @@ const ProductCard = ({ product }) => {
           );
           scrollTo(0, 0);
         }}
-        className="flex flex-col w-full min-w-[220px] max-w-[250px] bg-[#F4F6F3] border border-[#DCE4D8] rounded-[20px] overflow-hidden shadow-sm"
+        className="flex flex-col w-full h-full bg-[#F4F6F3] border border-[#DCE4D8] rounded-[20px] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
       >
         {/* Image Box - Hover is restricted strictly to this section */}
-        <div className="group/img relative h-40 w-full bg-white flex items-center justify-center p-4 border-b border-[#DCE4D8] cursor-pointer overflow-hidden">
+        <div className="group/img relative h-40 w-full bg-white flex items-center justify-center p-4 border-b border-[#DCE4D8] cursor-pointer overflow-hidden shrink-0">
           <img
             className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover/img:scale-110"
             src={product.image[0]?.replace("http://", "https://")}
@@ -37,17 +37,16 @@ const ProductCard = ({ product }) => {
           )}
         </div>
 
-        {/* Details Section - Dead Static (No Hover Effects) */}
+        {/* Details Section */}
         <div className="px-3 py-3 flex-1 flex flex-col bg-[#F4F6F3]">
           <span className="text-[9px] font-bold text-[#6D8A74] uppercase tracking-widest mb-1">
             {product.category}
           </span>
-          {/* Font size reduced to 14px for cleaner look */}
           <h3 className="text-[#1D2B22] font-extrabold text-[14px] leading-snug mb-2 line-clamp-2">
             {product.name}
           </h3>
 
-          {/* Rating & Stock - Scaled down */}
+          {/* Rating & Stock */}
           <div className="flex items-center gap-2 mb-3">
             <div className="flex items-center">
               <img src={assets.star_icon} className="w-3" alt="rating" />
@@ -61,7 +60,7 @@ const ProductCard = ({ product }) => {
           </div>
 
           {/* Action Area */}
-          <div className="mt-auto flex items-end justify-between">
+          <div className="mt-auto flex items-end justify-between pt-2">
             <div className="flex flex-col">
               <span className="text-[#6D8A74] text-[10px] line-through font-semibold mb-0.5">
                 {currency} {product.price}
@@ -78,7 +77,7 @@ const ProductCard = ({ product }) => {
             >
               {!cartItems[product._id] ? (
                 <button
-                  className="flex items-center justify-center gap-1.5 bg-[#1C462A] text-white px-3 h-[32px] rounded-[8px] cursor-pointer"
+                  className="flex items-center justify-center gap-1.5 bg-[#1C462A] text-white px-3 h-[32px] rounded-[8px] cursor-pointer hover:bg-[#153620] transition-colors"
                   onClick={() => addToCart(product._id)}
                 >
                   <img
@@ -95,7 +94,7 @@ const ProductCard = ({ product }) => {
                     onClick={() => {
                       removeFromCart(product._id);
                     }}
-                    className="w-7 h-full flex items-center justify-center text-[#1C462A] font-bold text-base cursor-pointer"
+                    className="w-7 h-full flex items-center justify-center text-[#1C462A] font-bold text-base cursor-pointer hover:bg-gray-50 rounded-l-[8px]"
                   >
                     -
                   </button>
@@ -106,7 +105,7 @@ const ProductCard = ({ product }) => {
                     onClick={() => {
                       addToCart(product._id);
                     }}
-                    className="w-7 h-full flex items-center justify-center text-[#1C462A] font-bold text-base cursor-pointer"
+                    className="w-7 h-full flex items-center justify-center text-[#1C462A] font-bold text-base cursor-pointer hover:bg-gray-50 rounded-r-[8px]"
                   >
                     +
                   </button>
